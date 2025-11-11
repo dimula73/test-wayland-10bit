@@ -94,6 +94,9 @@ int main(int argc, char *argv[])
     tryOpenGLFormat(QOpenGLContext::LibGL, QSurfaceFormat::OpenGL, 10, true);
     tryOpenGLFormat(QOpenGLContext::LibGLES, QSurfaceFormat::OpenGLES, 10, false);
 
+    tryOpenGLFormat(QOpenGLContext::LibGL, QSurfaceFormat::OpenGL, 16, true);
+    tryOpenGLFormat(QOpenGLContext::LibGLES, QSurfaceFormat::OpenGLES, 16, false);
+
 
     QApplication app(argc, argv);
 

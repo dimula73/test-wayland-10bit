@@ -265,13 +265,20 @@ void KisOpenGLModeProber::initSurfaceFormatFromConfig(std::pair<KisSurfaceColorS
         rootSurfaceFormat.first = KisSurfaceColorSpaceWrapper::DefaultColorSpace;
     } else {
         KIS_SAFE_ASSERT_RECOVER_NOOP(rootSurfaceFormat.first == KisSurfaceColorSpaceWrapper::DefaultColorSpace);
-        KIS_SAFE_ASSERT_RECOVER_NOOP(rootSurfaceFormat.second == 8 || rootSurfaceFormat.second == 10);
+        KIS_SAFE_ASSERT_RECOVER_NOOP(rootSurfaceFormat.second == 8 || rootSurfaceFormat.second == 10 || rootSurfaceFormat.second == 16);
 
         if (rootSurfaceFormat.second == 10) {
             format->setRedBufferSize(10);
             format->setGreenBufferSize(10);
             format->setBlueBufferSize(10);
             format->setAlphaBufferSize(2);
+            // TODO: check if we can use real sRGB space here
+            format->setColorSpace(KisSurfaceColorSpaceWrapper());
+        } else if (rootSurfaceFormat.second == 16) {
+            format->setRedBufferSize(16);
+            format->setGreenBufferSize(16);
+            format->setBlueBufferSize(16);
+            format->setAlphaBufferSize(16);
             // TODO: check if we can use real sRGB space here
             format->setColorSpace(KisSurfaceColorSpaceWrapper());
         } else {
